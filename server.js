@@ -1,9 +1,19 @@
-const express = require('express');
+const express= require('express');
 
 const app = express();
 
+//Add a static hadler for all static files - CSS/JS/IMG
+app.use(express.static(__dirname+"/frontend"));
+//app.use(express.static(__dirname+"morestatic"));
+
+//This is home handler
 app.get("/", function(req, res){
     res.send("Welcome to Vyshnavi's Basic Site");
+})
+
+app.get("/resume", function(req, res){
+    let fullFilePath = __dirname + "/frontend/html/resume.html";
+    res.sendFile(fullFilePath);
 })
 
 // Heroku will automatically set an environment variable called PORT

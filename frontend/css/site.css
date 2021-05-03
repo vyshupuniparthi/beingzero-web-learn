@@ -3,7 +3,24 @@ h1 {
     font-size: large;
 }
 
+
+/* Element selector */
+/* Class selector - We can give any class name of our choice */
+
+.red{
+    color:red;
+    font-size:large;
+}
+
+.green{
+    color:green;
+    font-size: large;
+}
+
 /*
+{} ----> Declaration box
+
+each line in declaration box is called one css declaration
 css-selector{
     prop-name1: prop-val1;
     prop-name2: prop-val2;

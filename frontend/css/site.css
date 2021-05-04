@@ -7,10 +7,11 @@ h1 {
 /* Element selector */
 /* Class selector - We can give any class name of our choice */
 
-.red{
+/*.red{
     color:red;
     font-size:large;
 }
+*/
 
 .green{
     color:green;

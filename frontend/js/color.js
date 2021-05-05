@@ -2,7 +2,7 @@ function changeColor() {
     let Red= document.getElementById('rangeRed').value;
     let Green= document.getElementById('rangeGreen').value;
     let Blue= document.getElementById('rangeBlue').value;
-    let color = "RGB("+ Red + "," + Green + "," + Blue + ")";
+    let color = "rgb("+ Red + "," + Green + "," + Blue + ")";
     document.body.style.backgroundColor = color;
     document.getElementById('colorOutput').innerHTML = ':' + color;
     var pElement =document.getElementById("btnresult");

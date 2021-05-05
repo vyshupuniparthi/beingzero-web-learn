@@ -5,6 +5,9 @@ function changeColor() {
     let color = "RGB("+ Red + "," + Green + "," + Blue + ")";
     document.body.style.backgroundColor = color;
     document.getElementById('colorOutput').innerHTML = ':' + color;
+    var pElement =document.getElementById("btnresult");
+    pElement.innerHTML = "You Clicked Me!!"
+    pElement.style.backgroundColor =color;
 }
 document.getElementById('rangeRed').addEventListener('input',changeColor);
 document.getElementById('rangeGreen').addEventListener('input',changeColor);

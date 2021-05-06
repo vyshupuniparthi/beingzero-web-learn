@@ -11,11 +11,11 @@ body{
 .form{
     position:relative;
     z-index: 1;
-    background: rgb(72, 44, 233)
+    background: rgb(72, 44, 233);
     max-width: 360px;
     max-height: 300px;
     margin: 0 auto 100px;
-    padding: 10px;
+    padding: 30px;
     text-align:center;
 }
 .form input{
@@ -25,7 +25,7 @@ body{
     width:100%;
     border:0;
     margin: 0 0 15px;
-    padding:15px;
+    padding:10px;
     box-sizing: border-box;
     font-size:14px;
 }
@@ -33,11 +33,14 @@ body{
     font-family:"Roboto" sans-serif;
     text-transform: uppercase;
     outline:0;
-    background:#4CAF50;
+    background:#4fe454;
     width:100%;
     border:0;
     padding:15px;
     color:#FFFFFF;
     font-size:14px;
     cursor:pointer;
+}
+p{
+    color: whitesmoke;
 }

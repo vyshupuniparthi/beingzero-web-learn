@@ -27,13 +27,13 @@ app.use("/color", function(req,res){
     res.sendFile(fullFilePath);
 })
 
-app.use("/regiter", function(req,res){
-    const fullFilePath = __dirname + "frontend/html/register.html";
+app.use("/register", function(req,res){
+    const fullFilePath = __dirname + "/frontend/html/register.html";
     res.sendFile(fullFilePath);
 })
 
 app.use("/login", function(req,res){
-    const fullFilePath = __dirname + "frontend/html/login.html";
+    const fullFilePath = __dirname + "/frontend/html/login.html";
     res.sendFile(fullFilePath);
 })
 

@@ -1,5 +1,5 @@
 body{
-    background-color:rgb(255, 255, 10) ;
+    background-color:rgb(235, 235, 14) ;
     background-size: cover;
     background-position: cover;
 }
@@ -9,12 +9,13 @@ body{
     margin: auto;
 }
 .form{
-    position: relative;
+    position:relative;
     z-index: 1;
-    background: rgba(7,40,195,0.8);
-    max-width:360px;
+    background: rgb(72, 44, 233)
+    max-width: 360px;
+    max-height: 300px;
     margin: 0 auto 100px;
-    padding: 45px;
+    padding: 10px;
     text-align:center;
 }
 .form input{

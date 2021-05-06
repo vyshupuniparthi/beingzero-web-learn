@@ -8,7 +8,7 @@ app.use(express.static(__dirname+"/frontend"));
 
 //This is home handler
 app.get("/", function(req, res){
-    res.send("Welcome to Vyshnavi's Basic Site");
+    res.send("Welcome to Vyshnavi's Basic Site")
 })
 
 app.get("/resume", function(req, res){
@@ -24,6 +24,16 @@ app.get("/google", function(req,res){
 
 app.use("/color", function(req,res){
     const fullFilePath = __dirname + "/frontend/html/color.html";
+    res.sendFile(fullFilePath);
+})
+
+app.use("/regiter", function(req,res){
+    const fullFilePath = __dirname + "frontend/html/register.html";
+    res.sendFile(fullFilePath);
+})
+
+app.use("/login", function(req,res){
+    const fullFilePath = __dirname + "frontend/html/login.html";
     res.sendFile(fullFilePath);
 })
 

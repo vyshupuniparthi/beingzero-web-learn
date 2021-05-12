@@ -15,11 +15,3 @@ addToDoButton.addEventListener('click', function(){
         toDoContainer.removeChild(paragraph);
     })
 })
-const inputField = document.querySelector('.storage');
-const toDoContainer=document.querySelector('.to-dos');
-const addToDoButton=document.querySelector('.button');
-const saveToLocalStorage = () => {
-    localStorage.setItem('textinput',toDoContainer.textContent);
-}
-
-addToDoButton.addEventListener('click', saveToLocalStorage);

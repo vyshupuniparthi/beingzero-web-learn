@@ -39,6 +39,7 @@ app.get("/login", function(req,res){
 
 app.get("/todo", function(req,res){
     const fullFilePath = __dirname + "/frontend/html/todo.html";
+    res.sendFile(fullFilePath);
 })
 
 // Heroku will automatically set an environment variable called PORT

@@ -22,19 +22,23 @@ app.get("/google", function(req,res){
 
 })
 
-app.use("/color", function(req,res){
+app.get("/color", function(req,res){
     const fullFilePath = __dirname + "/frontend/html/color.html";
     res.sendFile(fullFilePath);
 })
 
-app.use("/register", function(req,res){
+app.get("/register", function(req,res){
     const fullFilePath = __dirname + "/frontend/html/register.html";
     res.sendFile(fullFilePath);
 })
 
-app.use("/login", function(req,res){
+app.get("/login", function(req,res){
     const fullFilePath = __dirname + "/frontend/html/login.html";
     res.sendFile(fullFilePath);
+})
+
+app.get("/todo", function(req,res){
+    const fullFilePath = __dirname + "/frontend/html/todo.html";
 })
 
 // Heroku will automatically set an environment variable called PORT

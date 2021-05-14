@@ -12,8 +12,8 @@ app.use(express.json());
 //tell express to convert  from data to json
 
 var todos=[
-    {todo:"submit the task" , id=2},
-    {todo:"complete remaining work", id=1}
+    {todo:"submit the task" , id: 2},
+    {todo:"complete remaining work", id: 1}
 ]; //declare todos array
 
 //user:username  ,email: id

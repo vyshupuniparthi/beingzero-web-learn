@@ -1,0 +1,40 @@
+// //TO MAKE IT API SERVER
+// app.use(express.urlencoded({extended: true}));
+// app.use(express.json());
+// app.user(function(req, res, next){
+//     // all requests will go through it
+// })
+// app.use('/api/special', function(req, res, next){
+//     // this is only for apis whose url starts with /api/special
+// })
+// var todos= [];
+
+// // 5 Routes for any resource
+
+// app.get('/api/todos', function(req, res){
+//     // Get all todos
+// })
+
+// app.get('/api/todos/:todoId', function(req, res){
+
+//     // req.params.todoId
+
+//     // get single todo with given id
+// })
+
+// app.put('/api/todos/:todoId', function(req, res){
+
+//     // update
+// })
+
+// app.delete('/api/todos/:todoId', function(req, res){
+
+//     // delete
+// })
+
+
+// app.post('/api/todos', function(req, res){
+//     // Create
+
+//     // req.body will have what frontend sent
+// })

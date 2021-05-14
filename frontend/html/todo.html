@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/todo.css">
     <title>TO DO List</title>
 </head>
 <body>
     <h1>To Do List</h1>
-    <div class="container">
+    <form action="/api/todos" method:POST>
+        <!--
+    <div action ="/api/todos" class="container">
         <input id="inputField" type="text" placeholder="Add your TODO"><button id="addToDo">+</button>
         <div class="to-dos" id="toDoContainer">
         </div>
-    </div>
+    </div> -->
+    <label for="TODO">TODO</label>
+    <input type="text" name="todo" id="todo"><br>
+    <input type="submit" value="submit">
+ </form>
     <script src="/js/todo.js"></script>  
 </body>
 </html>

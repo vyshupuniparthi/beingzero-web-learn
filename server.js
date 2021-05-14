@@ -1,7 +1,7 @@
 const express= require('express');
 
 const app = express();
-let requestserver=0;
+let requestsServed=0;
 
 //this is to get frm data an fill that in req.body
 app.use(express.urlencoded({extended:true}));
@@ -22,8 +22,13 @@ var todos=[]; //declare todos array
 //4. delete the user
 
 //api-all crud operations should be accessed through url
-//post api users
-//
+//rest APIs
+//post api/users
+//get api/users
+//get /api/users/:userId
+//put /api/users/:userId
+//delete /api/users/:userId
+
 
 //Add a static hadler for all static files - CSS/JS/IMG
 app.use(express.static(__dirname+"/frontend"));
@@ -49,6 +54,62 @@ app.use('/api', function(req,res,next){
     requestsServed++;
     //if user is not logged in it will take him to home page else call next
     next(); //call the next matching handler
+})
+
+app.get('/api/todos', function(req,res){
+    res.json(todos);
+})
+
+app.get('api/todos/:todoId', function(req,res){
+    var todoId= req.params.todoId;
+
+    //search for todo with givenid
+    let idx = -1;
+    for(let i=0;i<todos.length;i++){
+        if(todos[i]==todoId){
+            idx=i;
+            break;
+        }
+    }
+    if(idx==-1)
+        res.json({error: 'todo not found'});
+    else
+        res.json(todos[idx]);   
+
+})
+app.put('/api/todos/:todoId', function(req,res){
+    let id=req.params.todoId;
+
+    console.log('PUT CALL CAME FOR'+id);
+    //search for element idx in todos array whose id is ==  id
+
+    todos[idx]=req.body;//update the old object with new one
+
+    //we can use res.sendFile if we want to send html file response
+
+    //api response
+    res.json({message: 'seuccess'});
+})
+app.delete('/api/todos/:todoId', function(req, res) {
+    var id = req.params("id");
+        todos.remove({
+            _id: id 
+        }, function(err){
+            if (err) {
+                console.log(err)
+            }
+            else {
+               return res.send("Removed");
+            }
+     });
+});
+
+app.post('/api/todos', function(req,res){
+    console.log("POST CALL CAME HERE");
+    //req.body can be json or urlencoded data
+    var newTodo = req.body;  //body contains the form data
+    console.log(newTodo);
+    res.json({});
 })
 
 //This is home handler

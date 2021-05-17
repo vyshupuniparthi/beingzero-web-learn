@@ -15,8 +15,8 @@ app.use(express.json());
 //tell express to convert  from data to json
 
 var users=[
-    {username: 'admin2', email:'admin2@beingzero.in', id:2},
-    {username: 'admin1', email:'admin1@beingzero.in', id:1},
+    {username: 'admin2', email:'admin2@beingzero.in', userId:2},
+    {username: 'admin1', email:'admin1@beingzero.in', userId:1},
 ]; //declare users array
 
 //user:username  ,email: id

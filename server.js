@@ -1,6 +1,9 @@
 const express= require('express');
+const shortid = require('shortid');
 
+console.log("UNIQUE ID: "+shortid());
 const app = express();
+
 let requestsServed=0;
 
 //this is to get frm data an fill that in req.body
@@ -11,10 +14,10 @@ app.use(express.json());
 
 //tell express to convert  from data to json
 
-var todos=[
-    {todo:"submit the task" , id: 2},
-    {todo:"complete remaining work", id: 1}
-]; //declare todos array
+var users=[
+    {username: 'admin2', email:'admin2@beingzero.in', id:2},
+    {username: 'admin1', email:'admin1@beingzero.in', id:1},
+]; //declare users array
 
 //user:username  ,email: id
 
@@ -59,43 +62,43 @@ app.use('/api', function(req,res,next){
     next(); //call the next matching handler
 })
 
-app.get('/api/todos', function(req,res){
-    res.json(todos);
+app.get('/api/users', function(req,res){
+    res.json(users);
 })
 
-app.get('api/todos/:todoId', function(req,res){
-    var todoId= req.params.todoId;
+app.get('/api/users/:userId', function(req,res){
+    var userId= req.params.userId;
 
     //search for todo with givenid
     let idx = -1;
-    for(let i=0;i<todos.length;i++){
-        if(todos[i]==todoId){
+    for(let i=0;i<users.length;i++){
+        if(users[i]==userId){
             idx=i;
             break;
         }
     }
     if(idx==-1)
-        res.json({error: 'todo not found'});
+        res.json({error: 'user not found'});
     else
-        res.json(todos[idx]);   
+        res.json(users[idx]);   
 
 })
-app.put('/api/todos/:todoId', function(req,res){
-    let id=req.params.todoId;
+app.put('/api/users/:userId', function(req,res){
+    let id = req.params.userId;
 
     console.log('PUT CALL CAME FOR'+id);
-    //search for element idx in todos array whose id is ==  id
+    //search for element idx in users array whose id is ==  id
 
-    todos[idx]=req.body;//update the old object with new one
+    users[idx]=req.body;//update the old object with new one
 
     //we can use res.sendFile if we want to send html file response
 
     //api response
-    res.json({message: 'seuccess'});
+    res.json({message: 'success'});
 })
-app.delete('/api/todos/:todoId', function(req, res) {
-    var id = req.params("id");
-        todos.remove({
+/*app.delete('/api/users/:userId', function(req, res) {
+   var id = req.params("id");
+        users.remove({
             _id: id 
         }, function(err){
             if (err) {
@@ -105,14 +108,23 @@ app.delete('/api/todos/:todoId', function(req, res) {
                return res.send("Removed");
             }
      });
-});
+});*/
 
-app.post('/api/todos', function(req,res){
+app.post('/api/users', function(req,res){
+    //create new user in given req.body
+
+    //validate:
+    //if userid already exists send back an error
+    //password check
+    //email verification
+
     console.log("POST CALL CAME HERE");
     //req.body can be json or urlencoded data
-    var newTodo = req.body;  //body contains the form data
-    console.log(newTodo);
-    res.json({});
+    var newUser = req.body;  //body contains the form data
+    users.push(newUser);
+    //res.json(newUser);
+    //console.log(newUser);
+    res.sendFile(__dirname+'/frontend/html/registration-success.html');
 })
 
 //This is home handler
@@ -150,6 +162,11 @@ app.get("/todo", function(req,res){
     const fullFilePath = __dirname + "/frontend/html/todo.html";
     res.sendFile(fullFilePath);
 })
+app.get("/registerapi", function(req,res){
+    const fullFilePath = __dirname + "/frontend/html/registerapi";
+    res.sendFile(fullFilePath);
+})
+
 
 // Heroku will automatically set an environment variable called PORT
 const PORT = process.env.PORT || 3000;

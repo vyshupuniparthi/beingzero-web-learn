@@ -163,7 +163,7 @@ app.get("/todo", function(req,res){
     res.sendFile(fullFilePath);
 })
 app.get("/registerapi", function(req,res){
-    const fullFilePath = __dirname + "/frontend/html/registerapi";
+    const fullFilePath = __dirname + "/frontend/html/registerapi.html";
     res.sendFile(fullFilePath);
 })
 

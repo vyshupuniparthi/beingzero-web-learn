@@ -4,10 +4,10 @@ const mongoose=require('mongoose')
 
 //connect to db
 var password = process.env.Mongo_atlas_password;
-var connectionString = "mongodb+srv://vyshnavi_29:"+"manuvyshu2.0"+"@cluster0.k3xuy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";  //contains dbserver-db name-username-password
+var connectionString = "mongodb+srv://vyshnavi_29:"+password+"@cluster0.k3xuy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";  //contains dbserver-db name-username-password
 const dbOptions={};
 //TODO:
-mongoose.connect(connectionString,{ useNewUrlParser: true },{ useUnifiedTopology: true });
+mongoose.connect(connectionString,{ useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('connected', function(){
     console.log("Database Connected");
 })

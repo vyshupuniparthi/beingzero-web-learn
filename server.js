@@ -1,7 +1,10 @@
 const express= require('express');
 const shortid = require('shortid');
-const mongoose=require('mongoose')
+const mongoose=require('mongoose');
+const courseLib = require('./backend/lib/courseLib')
+//const dbconnect = require('./backend/db/dbconnect');
 
+//dbconnect.connect();
 //connect to db
 var password = process.env.Mongo_atlas_password;
 var connectionString = "mongodb+srv://vyshnavi_29:"+password+"@cluster0.k3xuy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";  //contains dbserver-db name-username-password
@@ -10,6 +13,14 @@ const dbOptions={};
 mongoose.connect(connectionString,{ useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('connected', function(){
     console.log("Database Connected");
+
+    courseLib.getallcourses(function(err, coursesArray){
+        console.log(coursesArray);
+    })
+    //after connected run this code
+    // courseLib.createcourse({coursename: 'web development'}, function(err,savedObj){
+    //     console.log(savedObj);
+    // })
 })
 console.log("UNIQUE ID: "+shortid());
 const app = express();
@@ -136,7 +147,8 @@ app.post('/api/users', function(req,res){
     //console.log(newUser);
     res.sendFile(__dirname+'/frontend/html/registration-success.html');
 })
-
+app.get('/api/courses', courseLib.getallcourses);
+app.post('/api/courses', courseLib.getallcourses);
 //This is home handler
 app.get("/", function(req, res){
     res.send("Welcome to Vyshnavi's Basic Site")
@@ -174,6 +186,10 @@ app.get("/todo", function(req,res){
 })
 app.get("/registerapi", function(req,res){
     const fullFilePath = __dirname + "/frontend/html/registerapi.html";
+    res.sendFile(fullFilePath);
+})
+app.get("/crud", function(req,res){
+    const fullFilePath = __dirname + "/frontend/html/crud.html";
     res.sendFile(fullFilePath);
 })
 

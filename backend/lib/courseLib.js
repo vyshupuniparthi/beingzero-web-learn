@@ -21,15 +21,15 @@ module.exports.createcourse = function(courseobj,callback){
         {
             console.log("err"+err);
         }
-        else{
-            callback(err,courseobj);
+        else
+        {
+            callback(err,courseobjarr)
         }
     })
 }
-
 module.exports.getallcourses = function(callback){
-    var query = {}
-    coursemodel.find(query,function(err,courseobjarr){
+    var query = {};
+    coursemodel.find(query, function(err,courseobjarr){
         if(err)
         {
             console.log("err"+err);

@@ -7,7 +7,9 @@ const dbconnect = require('./backend/db/dbconnect');
 
 //connect to db
  var password = process.env.Mongo_atlas_password;
-var connectionString = "mongodb+srv://vyshnavi_29:"+password+"@cluster0.k3xuy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";  //contains dbserver-db name-username-password
+var connectionString = "mongodb+srv://vyshnavi_29:"+password+"@cluster0.k3xuy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+
+  //contains dbserver-db name-username-password
 const dbOptions={};
 //TODO:
 mongoose.connect(connectionString,{ useNewUrlParser: true, useUnifiedTopology: true });
@@ -141,8 +143,16 @@ app.post('/api/users', function(req,res){
     //console.log(newUser);
     res.sendFile(__dirname+'/frontend/html/registration-success.html');
 })
-app.get('/api/courses', courseLib.getallcourses);
-app.post('/api/courses', courseLib.getallcourses);
+
+app.get("/crud", courseLib.getall);
+app.delete("/crud/:idd", courseLib.deleteone);
+app.post("/crud",courseLib.addnewone);
+app.put("/crud/:idd", courseLib.update);
+
+// app.get('/api/courses', courseLib.getallcourses);
+// app.post('/api/courses', courseLib.createcourse);
+// app.delete('/api/:idd', courseLib.deleteone);
+// app.put('/api/:idd', courseLib.update);
 
 //This is home handler
 app.get("/", function(req, res){
@@ -183,7 +193,7 @@ app.get("/registerapi", function(req,res){
     const fullFilePath = __dirname + "/frontend/html/registerapi.html";
     res.sendFile(fullFilePath);
 })
-app.get("/crud", function(req,res){
+app.get("/crudop", function(req,res){
     const fullFilePath = __dirname + "/frontend/html/crud.html";
     res.sendFile(fullFilePath);
 })

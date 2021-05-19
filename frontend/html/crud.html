@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +36,7 @@
                             <option>Python</option>
                             <option>Php</option>
                         </select>
-                        <input class="form-control" placeholder=" Enter no of articles" type="number" id="test-result" style="margin: 10px;">
+                        <input class="form-control" placeholder=" Enter no of articels" type="number" id="test-result" style="margin: 10px;">
                         <button class="btn btn-sm btn-info" id="create-test" style="margin: 10px;">Add</button>
                     </div>
                     <!-- Data Table -->
@@ -45,7 +44,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Courses</th>
-                                <th scope="col">Articles</th>
+                                <th scope="col">Articels</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
@@ -61,7 +60,7 @@
 <script>
 
     var newId = 4
-    var newTest = { 'coursename': null, 'id': newId, 'articles': null }
+    var newTest = { 'name': null, 'id': newId, 'Articels': null }
 
     $('#add-test').on('click', function () {
         $('.form-wrapper').removeClass('hidden')
@@ -89,35 +88,39 @@
         }
     })
 
-    //make AJAX call to server to get courses data
-
+    
     $.get("/api/courses", function(data, status){
-        console.log("Data: "+ JSON.stringify(data) + "\nStatus: "+status);
+      console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+    //   var tests = [
+    //     { 'name': 'Javascript', 'id': '1', 'Articels': "43" },
+    //     { 'name': 'HTML', 'id': '2', 'Articels': "1" },
+    //     { 'name': 'CSS', 'id': '3', 'Articels': "24" },
+    // ]
         var tests = data;
-        for (var i in tests){
-            addRow(tests[i]);
+        for (var i in tests) {
+            addRow(tests[i])
         }
     });
 
     function addRow(obj) {
         var row = `<tr scope="row" class="test-row-${obj._id}">
                        <td>${obj.coursename}</td>
-                       <td id="result-${obj.id}" data-testid="${obj._id}"">${obj.articles}</td>
+                       <td id="result-${obj._id}" data-testid="${obj._id}"">${obj.articles}</td>
                        <td>
-                         <button class="btn btn-sm btn-danger" data-testid=${obj.id} id="delete-${obj.id}">Delete</button>
-                         <button class="btn btn-sm btn-info" disabled data-testid="${obj.id}"  id="save-${obj.id}">Save</button>
+                         <button class="btn btn-sm btn-danger" data-testid=${obj._id} id="delete-${obj._id}">Delete</button>
+                         <button class="btn btn-sm btn-info" disabled data-testid="${obj._id}"  id="save-${obj._id}">Save</button>
 
-                         <button class="btn btn-sm btn-danger hidden" data-testid="${obj.id}"  id="cancel-${obj.id}">Cancel</button>
-                         <button class="btn btn-sm btn-primary hidden" data-testid="${obj.id}"  id="confirm-${obj.id}">Confirm</button>
+                         <button class="btn btn-sm btn-danger hidden" data-testid="${obj._id}"  id="cancel-${obj._id}">Cancel</button>
+                         <button class="btn btn-sm btn-primary hidden" data-testid="${obj._id}"  id="confirm-${obj._id}">Confirm</button>
 
                        </td>
                    </tr>`
         $('#tests-table').append(row)
 
-        $(`#delete-${obj.id}`).on('click', deleteTest)
-        $(`#cancel-${obj.id}`).on('click', cancelDeletion)
-        $(`#confirm-${obj.id}`).on('click', confirmDeletion)
-        $(`#save-${obj.id}`).on('click', saveUpdate)
+        $(`#delete-${obj._id}`).on('click', deleteTest)
+        $(`#cancel-${obj._id}`).on('click', cancelDeletion)
+        $(`#confirm-${obj._id}`).on('click', confirmDeletion)
+        $(`#save-${obj._id}`).on('click', saveUpdate)
 
 
         $(`#result-${obj._id}`).on('click', editResult)

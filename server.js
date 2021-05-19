@@ -189,7 +189,7 @@ app.get("/crud", function(req,res){
 })
 
 // Heroku will automatically set an environment variable called PORT
- const PORT = process.env.PORT || 5000;
+ const PORT = process.env.PORT || 3000;
 
 // // Start the server
 app.listen(PORT, function(){

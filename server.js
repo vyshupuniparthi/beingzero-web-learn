@@ -168,6 +168,10 @@ app.get("/crudapp", function(req,res){
     const fullFilePath = __dirname + "/frontend/html/crud.html";
     res.sendFile(fullFilePath);
 })
+app.get("/tambola", function(req,res){
+    const fullFilePath = __dirname + "/frontend/html/tambola.html";
+    res.sendFile(fullFilePath);
+})
 
 // Heroku will automatically set an environment variable called PORT
  const PORT = process.env.PORT || 3000;

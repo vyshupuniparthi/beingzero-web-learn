@@ -1,22 +1,10 @@
 const express= require('express');
+const mongoose = require('mongoose')
 const shortid = require('shortid');
-const mongoose=require('mongoose');
 const courseLib = require('./backend/lib/courseLib');
-const dbconnect = require('./backend/db/dbconnect');
-// const testdb = require('./backend/db/dbtest');
-
-//connect to db
- var password = process.env.Mongo_atlas_password;
-var connectionString = "mongodb+srv://vyshnavi_29:"+password+"@cluster0.k3xuy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-
-  //contains dbserver-db name-username-password
-const dbOptions={};
-//TODO:
-mongoose.connect(connectionString,{ useNewUrlParser: true, useUnifiedTopology: true });
-// mongoose.connection.on('connected', function(){
-//     console.log("Database Connected");
-
-// })
+const dbConnectLib = require('./backend/lib/dbConnectLib');
+//const config = require('./backend/config/config')
+//const testdb = require('./backend/db/dbtest');
 
 console.log("UNIQUE ID: "+shortid());
 const app = express();
@@ -113,19 +101,7 @@ app.put('/api/users/:userId', function(req,res){
     //api response
     res.json({message: 'success'});
 })
-/*app.delete('/api/users/:userId', function(req, res) {
-   var id = req.params("id");
-        users.remove({
-            _id: id 
-        }, function(err){
-            if (err) {
-                console.log(err)
-            }
-            else {
-               return res.send("Removed");
-            }
-     });
-});*/
+
 
 app.post('/api/users', function(req,res){
     //create new user in given req.body
@@ -148,11 +124,6 @@ app.get("/crud", courseLib.getall);
 app.delete("/crud/:idd", courseLib.deleteone);
 app.post("/crud",courseLib.addnewone);
 app.put("/crud/:idd", courseLib.update);
-
-// app.get('/api/courses', courseLib.getallcourses);
-// app.post('/api/courses', courseLib.createcourse);
-// app.delete('/api/:idd', courseLib.deleteone);
-// app.put('/api/:idd', courseLib.update);
 
 //This is home handler
 app.get("/", function(req, res){
@@ -193,7 +164,7 @@ app.get("/registerapi", function(req,res){
     const fullFilePath = __dirname + "/frontend/html/registerapi.html";
     res.sendFile(fullFilePath);
 })
-app.get("/crudop", function(req,res){
+app.get("/crudapp", function(req,res){
     const fullFilePath = __dirname + "/frontend/html/crud.html";
     res.sendFile(fullFilePath);
 })

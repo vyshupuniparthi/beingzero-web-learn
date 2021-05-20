@@ -9,7 +9,7 @@ $(function() {
         },
         generateNextRandom: function() {
             if (bingo.selectedNumbers.length > 88) {
-                alert("All numbers Exhausted");
+                alert("Table is full!!");
                 return 0;
             }
             var random = bingo.generateRandom();

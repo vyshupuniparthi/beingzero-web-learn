@@ -4,7 +4,7 @@ body{
     background-position: cover;
 }
 .login{
-    width:360px;
+    width: 360pxpx;
     padding: 10% 0 0;
     margin: auto;
 }
@@ -13,7 +13,7 @@ body{
     z-index: 1;
     background: rgba(23, 61, 231);
     max-width: 360px;
-    max-height: 300px;
+    max-height: 400px;
     margin: 0 auto 100px;
     padding: 30px;
     text-align:center;
@@ -29,7 +29,7 @@ body{
     box-sizing: border-box;
     font-size:14px;
 }
-.form button{
+input[type=submit] {
     font-family:"Roboto" sans-serif;
     text-transform: uppercase;
     outline:0;

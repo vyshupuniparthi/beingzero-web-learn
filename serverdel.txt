@@ -1,0 +1,107 @@
+//tell express to convert  from data to json
+
+var users=[
+    {username: 'admin2', email:'admin2@beingzero.in', userId:2},
+    {username: 'admin1', email:'admin1@beingzero.in', userId:1},
+]; //declare users array
+
+//user:username  ,email: id
+
+//1. create user - add a new user in users array to the end
+//2. retrieve all users- get json of all users
+//retrieve user with given data - get only single json object
+//3. update a user with given id
+//4. delete the user
+
+//api-all crud operations should be accessed through url
+//rest APIs
+//post api/users
+//get api/users
+//get /api/users/:userId
+//put /api/users/:userId
+//delete /api/users/:userId
+
+//middleware has req,res and next
+app.use(function(req,res,next){
+    console.log("First middleware: A request came");
+    requestsServed++;
+    //if user is not logged in it will take him to home page else call next
+    next(); //call the next matching handler
+})
+
+app.use(function(req,res,next){
+    console.log("Second middleware: A request came");
+    requestsServed++;
+    //if user is not logged in it will take him to home page else call next
+    next(); //call the next matching handler
+})
+
+app.use('/api', function(req,res,next){
+    console.log("API middleware: A request came");
+    requestsServed++;
+    //if user is not logged in it will take him to home page else call next
+    next(); //call the next matching handler
+})
+
+app.get('/api/users', function(req,res){
+    res.json(users);
+})
+
+app.get('/api/users/:userId', function(req,res){
+    var userId= req.params.userId;
+
+    //search for todo with givenid
+    let idx = -1;
+    for(let i=0;i<users.length;i++){
+        if(users[i]==userId){
+            idx=i;
+            break;
+        }
+    }
+    if(idx==-1)
+        res.json({error: 'user not found'});
+    else
+        res.json(users[idx]);   
+
+})
+app.put('/api/users/:userId', function(req,res){
+    let id = req.params.userId;
+
+    console.log('PUT CALL CAME FOR'+id);
+    //search for element idx in users array whose id is ==  id
+
+    users[idx]=req.body;//update the old object with new one
+
+    //we can use res.sendFile if we want to send html file response
+
+    //api response
+    res.json({message: 'success'});
+})
+
+
+app.post('/api/users', function(req,res){
+    //create new user in given req.body
+
+    //validate:
+    //if userid already exists send back an error
+    //password check
+    //email verification
+
+    console.log("POST CALL CAME HERE");
+    //req.body can be json or urlencoded data
+    var newUser = req.body;  //body contains the form data
+    users.push(newUser);
+    //res.json(newUser);
+    //console.log(newUser);
+    res.sendFile(__dirname+'/frontend/html/registration-success.html');
+})
+
+app.get("/crud", courseLib.getall);
+app.delete("/crud/:idd", courseLib.deleteone);
+app.post("/crud",courseLib.addnewone);
+app.put("/crud/:idd", courseLib.update);
+
+//This is home handler
+// app.get("/", function(req, res){
+//     res.send("Welcome to Vyshnavi's Basic Site")
+// })

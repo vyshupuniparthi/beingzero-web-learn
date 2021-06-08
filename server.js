@@ -1,5 +1,6 @@
 const express= require('express');
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
+const path = require("path");
 const shortid = require('shortid');
 const courseLib = require('./backend/lib/courseLib');
 const dbConnectLib = require('./backend/lib/dbConnectLib');
@@ -8,7 +9,7 @@ const dbConnectLib = require('./backend/lib/dbConnectLib');
 
 console.log("UNIQUE ID: "+shortid());
 const app = express();
-
+// dbConnectLib.connect();
 let requestsServed=0;
 
 //this is to get frm data an fill that in req.body
@@ -126,8 +127,13 @@ app.post("/crud",courseLib.addnewone);
 app.put("/crud/:idd", courseLib.update);
 
 //This is home handler
+// app.get("/", function(req, res){
+//     res.send("Welcome to Vyshnavi's Basic Site")
+// })
+
 app.get("/", function(req, res){
-    res.send("Welcome to Vyshnavi's Basic Site")
+    let fullFilePath = __dirname + "/frontend/html/index.html";
+    res.sendFile(fullFilePath);
 })
 
 app.get("/resume", function(req, res){

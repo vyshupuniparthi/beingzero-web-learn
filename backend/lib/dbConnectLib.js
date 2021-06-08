@@ -7,13 +7,13 @@ db.on('connected', function () {
 console.log('Database connected!');
 });
 
-
+// var dboptions = { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}
 
 // const config = require('../config/config');
-// const connectionsstring = config.mongoConnectionString
+// // const connectionsstring = config.mongoConnectionString
 // module.exports={
 //     connect : function(){
-//         mongoose.connect(connectionsstring, dboptions);
+//         mongoose.connect(config.mongoConnectionString, dboptions);
 //         var db = mongoose.connection;
 //         db.on('connected', function(){
 //             console.log('Mongo Connected!');
